@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+    <div class="card card-register">
+        <h1>{{ titulo }}</h1>
+
+        {% if errors.non_field %}
+        <div class="errors">
+            {% for error in errors.non_field %}
+                <div>{{ error }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <label for="id_username">Usuario</label>
+                <input
+                    id="id_username"
+                    name="username"
+                    type="text"
+                    value="{{ form_data.username }}"
+                    autocomplete="username"
+                    required
+                >
+                {% if errors.username %}
+                    <span class="errors">{{ errors.username|join:' ' }}</span>
+                {% endif %}
+            </p>
+
+            <p>
+                <label for="id_password1">Contraseña</label>
+                <input
+                    id="id_password1"
+                    name="password1"
+                    type="password"
+                    autocomplete="new-password"
+                    required
+                >
+                {% if errors.password1 %}
+                    <span class="errors">{{ errors.password1|join:' ' }}</span>
+                {% endif %}
+            </p>
+
+            <p>
+                <label for="id_password2">Confirmar contraseña</label>
+                <input
+                    id="id_password2"
+                    name="password2"
+                    type="password"
+                    autocomplete="new-password"
+                    required
+                >
+                {% if errors.password2 %}
+                    <span class="errors">{{ errors.password2|join:' ' }}</span>
+                {% endif %}
+            </p>
+
+            <div class="actions">
+                <button class="btn btn-primary" type="submit">Registrar</button>
+                <a class="btn btn-secondary" href="{% url 'crm:access' %}">Ya tengo cuenta</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

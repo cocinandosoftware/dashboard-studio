@@ -23,7 +23,7 @@ dashboard-studio/
 ### 1. Activar el entorno virtual
 
 ```bash
-source dashboard_venv/bin/activate
+source venv_dashboard/bin/activate
 ```
 
 ### 2. Instalar dependencias (si es necesario)
@@ -60,6 +60,12 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
+### Cargar configuración inicial del CRM
+
+```bash
+python manage.py bootstrap_crm
+```
+
 ### Crear un superusuario
 
 ```bash
@@ -74,3 +80,13 @@ Primero crea un superusuario y luego accede a http://127.0.0.1:8000/admin/
 
 - Python 3
 - Django 4.2.28
+
+## Arranque rápido recomendado
+
+```bash
+source venv_dashboard/bin/activate
+python manage.py migrate
+python manage.py bootstrap_crm
+python manage.py createsuperuser
+python manage.py runserver 8080
+```

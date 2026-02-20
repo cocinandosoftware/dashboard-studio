@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('context.web.urls.public_urls')),
+    path('crm/', include('context.crm.urls.crm_urls')),
 ]
